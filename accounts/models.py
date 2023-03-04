@@ -17,7 +17,6 @@ who_to_date_choices = (
 )
 
 class user(models.Model):
-    username = models.CharField(max_length=25, null=False, default="", blank=True)
     password = models.CharField(max_length=25, default="", blank=True)
     name = models.CharField(max_length=50, default="", blank=True)
     bio = models.CharField(max_length=1080, default="", blank=True)

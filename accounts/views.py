@@ -25,8 +25,6 @@ def get_all_users(request):
 
 def register_view(request):
     data= json.loads(request.body)
-
-    username = data["username"]
     password = data["password"]
     name = data["name"]
     bio = data["bio"]
@@ -46,7 +44,7 @@ def register_view(request):
     is_smoker = data["is_smoker"]
     is_verified = data["is_verified"]
 
-    p = user(username=username, password=password, name=name, bio=bio, college=college, country=country, DateOfBirth=DateOfBirth, contact=contact, who_to_date=who_to_date, height=height, interests=interests, is_drinker=is_drinker, is_smoker=is_smoker, is_verified=is_verified, email=email, gender=gender)
+    p = user(password=password, name=name, bio=bio, college=college, country=country, DateOfBirth=DateOfBirth, contact=contact, who_to_date=who_to_date, height=height, interests=interests, is_drinker=is_drinker, is_smoker=is_smoker, is_verified=is_verified, email=email, gender=gender)
     p.save()
     return HttpResponse("data added")
 
@@ -55,6 +53,13 @@ def register_view(request):
 
 
 def login_view(request):
-    data=request.data
+    data= json.loads(request.body)
+
+    email = data['email']
+    password = data['password']
+
+    record=user.objects.get(email=email)
+
+    print(record)
 
     return data
