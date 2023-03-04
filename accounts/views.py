@@ -1,65 +1,56 @@
-import json
-from . models import *
-from .serializers import *
 from django.shortcuts import render
-from rest_framework.views import APIView
-from django.http.response import JsonResponse
-from django.http import HttpResponse
-
-
 
 # Create your views here.
+from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import MyTokenObtainPairSerializer, RegisterSerializer
 
-def get_all_users(request):
-    records = user.objects.all()
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-    print(records)
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
-    record_serializer = userSeriauslizer(records, many=True)
-
-    return JsonResponse(
-        {
-            "data": record_serializer.data
-        }
-    )
-
-def register_view(request):
-    data= json.loads(request.body)
-    password = data["password"]
-    name = data["name"]
-    bio = data["bio"]
-    college = data["college"]
-    country = data["country"]
-    # created_at = data["created_at"]
-    DateOfBirth = data["dob"]
-    print(DateOfBirth)
-    contact = data["contact"]
-    email = data["email"]
-    gender = data["gender"]
-    # status = data["status"]
-    who_to_date = data["who_to_date"]
-    height = data["height"]
-    interests = data["interests"]
-    is_drinker = data["is_drinker"]
-    is_smoker = data["is_smoker"]
-    is_verified = data["is_verified"]
-
-    p = user(password=password, name=name, bio=bio, college=college, country=country, DateOfBirth=DateOfBirth, contact=contact, who_to_date=who_to_date, height=height, interests=interests, is_drinker=is_drinker, is_smoker=is_smoker, is_verified=is_verified, email=email, gender=gender)
-    p.save()
-    return HttpResponse("data added")
+class RegisterView(APIView):
+    permission_classes = [AllowAny]
+    
+    def post(self, request, format=None):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"data" : {"val" : True, "detail" : "Registration Successful"}}, status=status.HTTP_200_OK)
+        return Response({"data" : {"val" : True, "detail" : serializer.errors}}, status=status.HTTP_400_BAD_REQUEST)
 
 
+#view to authenticate 
+class MyTokenObtainPairView(TokenObtainPairView):
+    permissions_classes = [AllowAny]
+    serializer_class = MyTokenObtainPairSerializer
 
+    def get(self, requests, format=None):
+        return(Response({"msg": "Get not allowed"}))
 
-
-def login_view(request):
-    data= json.loads(request.body)
-
-    email = data['email']
-    password = data['password']
-
-    record=user.objects.get(email=email)
-
-    print(record)
-
-    return data
+    def post(self, requests, format=None):
+        r = super().post(requests)
+        
+        if r.status_code == 200:
+            obj = {}
+            obj["email"] = requests.data["email"]
+            client = User.objects.get(email=obj["email"])
+            obj["name"] = client.name
+            obj["bio"] = client.bio
+            obj["college"] = client.college
+            obj["country"] = client.country
+            obj["dob"] = client.dob
+            obj["contact"] = client.contact
+            obj["gender"] = client.gender
+            obj["who_to_date"] = client.who_to_date
+            obj["height"] = client.height
+            obj["interests"] = client.interests
+            obj["is_drinker"] = client.is_drinker
+            obj["is_smoker"] = client.is_smoker
+            obj["is_verified"] = client.is_verified
+            
+            return Response({"data" : {"val" : True, "tokens": r.data, "details":obj}}, status=status.HTTP_200_OK)
+        return r
