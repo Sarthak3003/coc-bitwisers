@@ -63,7 +63,7 @@ export default function DashboardLayout() {
 
       <Main>
         <Outlet />
-        <PopupState
+        {/* <PopupState
           variant="popover"
           popupId="demo-popup-popover"
           onClick={SpeechRecognition.startListening}
@@ -104,7 +104,7 @@ export default function DashboardLayout() {
               </Popover>
             </Button>
           )}
-        </PopupState>
+        </PopupState> */}
       </Main>
     </StyledRoot >
   );
