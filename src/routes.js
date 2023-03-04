@@ -15,6 +15,7 @@ import BarcodePage from './pages/BarcodePage';
 import CSVUploadPage from './pages/CSVUploadPage';
 import Kanban from "./pages/Kanban"
 import LabTabs from './sections/@dashboard/tabs/Tabs';
+import TinCard from './components/tincard/TinCard';
 
 
 export default function Router() {
@@ -30,6 +31,7 @@ export default function Router() {
         { path: 'blog', element: <BlogPage /> },
         { path: 'scanbarcode', element: <LabTabs /> },
         { path: 'schedule', element: <Kanban /> },
+        { path: 'tinder', element: <TinCard /> }
       ],
     },
     {
