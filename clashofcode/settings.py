@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     'accounts',
     'corsheaders',
+    'rest_framework',
 ]
 
 
@@ -57,7 +58,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ALLOW_CREDENTIALS = False
+# CORS_ALLOW_CREDENTIALS = False
 
 ROOT_URLCONF = 'clashofcode.urls'
 
