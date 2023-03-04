@@ -3,7 +3,7 @@ import { Link, Container, Typography, CardMedia } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 // hooks
 // sections
-import SignUpForm from '../sections/auth/signup/SignUpForm';
+import HorizontalLinearStepper from '../sections/auth/signup/Stepper';
 import useResponsive from '../hooks/useResponsive';
 import luigi from '../images/luigi.png'
 
@@ -65,7 +65,8 @@ export default function SignUpPage() {
                             Already have an account? {''}
                             <Link variant="subtitle2" sx={{ cursor: 'pointer' }} onClick={() => navigate('/login')}>Login</Link>
                         </Typography>
-                        <SignUpForm />
+                        {/* <SignUpForm /> */}
+                        <HorizontalLinearStepper />
                     </StyledContent>
                 </Container>
             </StyledRoot>

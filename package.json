@@ -54,6 +54,7 @@
     "apexcharts": "^3.36.0",
     "axios": "^1.2.5",
     "change-case": "^4.1.2",
+    "country-state-city": "^3.1.2",
     "date-fns": "^2.29.3",
     "firebase": "^9.16.0",
     "fs": "^0.0.1-security",

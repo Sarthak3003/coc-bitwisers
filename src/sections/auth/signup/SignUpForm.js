@@ -2,9 +2,10 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Grid, CircularProgress } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Grid, CircularProgress, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { Box } from '@mui/system';
+import { Country, State, City } from 'country-state-city';
 import successHandler from '../../../helpers/successHandler';
 import errorHandler from "../../../helpers/errorHandler"
 import AuthServices from '../../../services/AuthServices';
@@ -12,20 +13,26 @@ import AuthServices from '../../../services/AuthServices';
 import Iconify from '../../../components/iconify';
 import UserServices from '../../../services/UserServices';
 import { kpupContext } from '../../../context';
-// ----------------------------------------------------------------------
 
-export default function SignUpForm() {
+// ----------------------------------------------------------------------
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+      "&::-webkit-scrollbar": { display: 'none' }
+    },
+  },
+};
+export default function SignUpForm({ setActiveStep, activeStep, json, setJson }) {
   const navigate = useNavigate();
   const [load, setLoad] = useState(false)
   const [showPassword, setShowPassword] = useState(false);
-  const [json, setJson] = useState({
-    email: '',
-    password: '',
-    name: '',
-    confirm_password: '',
-    phone_no: ''
-  })
   const { token, setToken, user, setUser } = useContext(kpupContext)
+  const countries = Country.getAllCountries()
+  console.log(countries)
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -61,66 +68,48 @@ export default function SignUpForm() {
     <>
       <Stack spacing={3}>
         <Grid container spacing={2} >
-          <Grid item md={12} sx={{ width: '100%' }}>
-            <TextField name="name" label="Name" sx={{ width: '100%' }} value={json.name} id='name' onChange={handleChange} />
-          </Grid>
           <Grid item md={6} sx={{ width: '100%' }}>
-            <TextField name="phone_no" label="Phone Number" sx={{ width: '100%' }} value={json.phone_no} id='phone_no' onChange={handleChange} />
+            <TextField name="name" label="Name" sx={{ width: '100%' }} value={json.name} id='name' onChange={handleChange} />
           </Grid>
           <Grid item md={6} sx={{ width: '100%' }}>
             <TextField name="email" label="Email address" sx={{ width: '100%' }} value={json.email} id='email' onChange={handleChange} />
           </Grid>
-          <Grid item md={6}>
-            <TextField
-              name="password"
-              label="Password" sx={{ width: '100%' }}
-              type={showPassword ? 'text' : 'password'}
-              value={json.password} id='password' onChange={handleChange}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                      <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
+          <Grid item md={6} sx={{ width: '100%' }}>
+            <TextField name="contact" label="Phone Number" sx={{ width: '100%' }} value={json.contact} id='contact' onChange={handleChange} />
           </Grid>
           <Grid item md={6}>
-            <TextField
-              name="confirm_password"
-              value={json.confirm_password} id='confirm_password' onChange={handleChange}
-              label="Confirm Password" sx={{ width: '100%' }}
-              type={showPassword ? 'text' : 'password'}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                      <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Country</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={json.country}
+                name="country"
+                sx={{ width: '100%' }}
+                onChange={handleChange}
+                MenuProps={MenuProps}
+              >
+
+                {
+                  countries.map((country, index) => {
+                    return <MenuItem key={country.isoCode} value={country.isoCode}>{country.name}</MenuItem>
+                  })
+                }
+              </Select>
+            </FormControl>
           </Grid>
         </Grid>
 
 
       </Stack>
 
-      <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
-        <Checkbox name="remember" label="Remember me" />
-        <Link variant="subtitle2" sx={{ color: "#E5659B" }} underline="hover">
-          Keep me signed in
-        </Link>
-      </Stack>
 
-      {!load ? <LoadingButton onClick={handleClick} sx={{ backgroundColor: "#E5659B" }} fullWidth size="large" type="submit" variant="contained">
+
+      {/* {!load ? <LoadingButton onClick={handleClick} sx={{ backgroundColor: "#E5659B" }} fullWidth size="large" type="submit" variant="contained">
         Sign Up
       </LoadingButton> : <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <CircularProgress sx={{ backgroundColor: '#E5659B', color: 'white', padding: '5px', borderRadius: '50%' }} />
-      </Box>}
+      </Box>} */}
     </>
   );
 }

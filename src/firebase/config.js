@@ -1,15 +1,13 @@
-
-import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
+import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCUzfDaR6RiqtCIn3Ts_8CWlvkLbx2wvcY",
-    authDomain: "k-pup-45e93.firebaseapp.com",
-    projectId: "k-pup-45e93",
-    storageBucket: "k-pup-45e93.appspot.com",
-    messagingSenderId: "668247895040",
-    appId: "1:668247895040:web:c597058b1642e4e4a87ce5"
+    apiKey: "AIzaSyCUsJVTZJwAXJrp0Iem3vdS_7lACwVWAbA",
+    authDomain: "image-coc.firebaseapp.com",
+    projectId: "image-coc",
+    storageBucket: "image-coc.appspot.com",
+    messagingSenderId: "637905552831",
+    appId: "1:637905552831:web:d8ab9aa771db48cb644d0a"
 };
-
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app)

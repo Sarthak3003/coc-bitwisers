@@ -11,19 +11,18 @@ const getBarcode = (data) => {
     });
 };
 
-const getBarcodeDetails = (value) => {
-    console.log(value)
-    return httpCommon.get("https://barcode-lookup.p.rapidapi.com/v3/products",
+const scanID = (data) => {
+    return httpCommon.post('https://ocr43.p.rapidapi.com/v1/results', data,
         {
-            params: { barcode: value },
             headers: {
-                'X-RapidAPI-Key': '1f33786e09msh6106b29575ccba1p125dd8jsn2bfa5c10745b',
-                'X-RapidAPI-Host': 'barcode-lookup.p.rapidapi.com'
+                'content-type': 'application/x-www-form-urlencoded',
+                'X-RapidAPI-Key': '69aa88bb0cmsh1f88160eee96bb6p1d6fd9jsnc858731d86cb',
+                'X-RapidAPI-Host': 'ocr43.p.rapidapi.com'
             }
         })
 }
 
 export default {
     getBarcode,
-    getBarcodeDetails,
+    scanID,
 }
