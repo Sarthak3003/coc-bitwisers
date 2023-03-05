@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import useResponsive from '../hooks/useResponsive';
 // sections
 import { LoginForm } from '../sections/auth/login';
-import luigi from '../images/luigi.png'
+import search from '../images/search.png'
 // ----------------------------------------------------------------------
 
 const StyledRoot = styled('div')(({ theme }) => ({
@@ -50,7 +50,8 @@ export default function LoginPage() {
                         <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
                             Hi, Welcome Back
                         </Typography>
-                        <CardMedia component='img' image={luigi} alt="login" />
+                        <CardMedia component='img' image='https://media.giphy.com/media/0q7ngLrQvNtQOervna/giphy.gif' alt="login"  />
+                        {/* <div style={{width:'100%',height:0,paddingBottom:'70%',position:'relative'}}><iframe src="https://giphy.com/embed/0q7ngLrQvNtQOervna" title='gif' width="100%" height="100%" style={{position:"absolute"}} className="giphy-embed" allowFullScreen/></div><a href="https://giphy.com/stickers/winter-hndroz-hndroz7-0q7ngLrQvNtQOervna"></a> */}
                     </StyledSection>
                 )}
 
@@ -62,7 +63,7 @@ export default function LoginPage() {
 
                         <Typography variant="body2" sx={{ mb: 5 }}>
                             Don’t have an account? {''}
-                            <Link sx={{ color: "#E5659B" }} variant="subtitle2" sx={{ cursor: 'pointer' }} onClick={() => navigate('/signup')}>Get started</Link>
+                            <Link sx={{ color: "#E5659B",cursor:'pointer' }} variant="subtitle2"  onClick={() => navigate('/signup')}>Get started</Link>
                         </Typography>
                         <LoginForm />
                     </StyledContent>

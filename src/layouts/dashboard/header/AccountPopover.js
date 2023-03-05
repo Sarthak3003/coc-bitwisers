@@ -59,7 +59,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        <Avatar src={`https://source.unsplash.com/random/?user-face&${Math.random()}`} alt="photoURL" />
       </IconButton>
 
       <Popover
