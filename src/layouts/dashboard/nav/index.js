@@ -3,7 +3,8 @@ import { useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 // @mui
 import { styled, alpha } from '@mui/material/styles';
-import { Box, Link, Button, Drawer, Typography, Avatar, Stack, CardMedia } from '@mui/material';
+import { Box, Link, Button, Drawer, Typography, Avatar, Stack, CardMedia, Card, CardContent, Grid } from '@mui/material';
+import FlareIcon from '@mui/icons-material/Flare';
 // mock
 import account from '../../../_mock/account';
 // hooks
@@ -17,7 +18,7 @@ import logo from "../../../images/logo.png"
 import { kpupContext } from '../../../context';
 // ----------------------------------------------------------------------
 
-const NAV_WIDTH = 280;
+const NAV_WIDTH = 240;
 
 const StyledAccount = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -60,7 +61,7 @@ export default function Nav({ openNav, onCloseNav }) {
         <CardMedia component='img' image={logo} sx={{ width: '50%' }} />
       </Box>
 
-      <Box sx={{ mb: 5, mx: 2.5 }}>
+      <Box sx={{ mb: 2, mx: 2 }}>
         <Link underline="none">
           <StyledAccount>
             <Avatar src={'/assets/images/avatars/avatar_default.jpg'} alt="photoURL" />
@@ -70,16 +71,34 @@ export default function Nav({ openNav, onCloseNav }) {
                 {user && user.name}
               </Typography>
 
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account && account.substring(0, 15)}...
-              </Typography>
             </Box>
           </StyledAccount>
         </Link>
       </Box>
 
       <NavSection data={navConfig} />
+      <Card sx={{ mb: 2, mx: 2 }}>
+        <CardContent sx={{ padding: ' 10px' }} >
+          <Grid sx={{ display: 'flex', alignItems: 'center' }}>
+            <FlareIcon sx={{ color: '#E5659B' }} />
+            <h4 style={{ margin: '0', padding: '0', fontFamily: 'Poppins', marginLeft: '3%' }}>VIP Members</h4>
+          </Grid>
+          {
+            [5, 26, 3].map((k) => {
+              return <Grid container rowSpacing={1} sx={{ display: 'flex', padding: '2%', alignItems: 'center' }}>
+                <Grid item md={5}>
+                  <CardMedia sx={{ width: '50px', height: '50px', borderRadius: '5px' }} component='img' image={`https://source.unsplash.com/random/?user-face&${k}`} />
 
+                </Grid>
+                <Grid item md={7}>
+                  <h6 style={{ margin: '0', padding: '0' }}>Khushi Mehta</h6>
+                  <p style={{ fontSize: '10px', margin: '0', padding: '0' }}>Age 21 Location: India</p>
+                </Grid>
+              </Grid>
+            })
+          }
+        </CardContent>
+      </Card>
 
       <Box sx={{ flexGrow: 1 }} />
     </Scrollbar>

@@ -11,31 +11,41 @@ const navConfig = [
     path: '/dashboard/app',
     icon: icon('ic_analytics'),
   },
+  {
+    title: 'Suggestions',
+    path: '/dashboard/tinder',
+    icon: icon('ic_user')
+  },
+  {
+    title: 'Plans',
+    path: '/dashboard/pricing',
+    icon: icon('ic_blog')
+  },
   // {
   //   title: 'Employees',
   //   path: '/dashboard/user',
   //   icon: icon('ic_user'),
   // },
-  {
-    title: 'product',
-    path: '/dashboard/product',
-    icon: icon('ic_cart'),
-  },
+  // {
+  //   title: 'product',
+  //   path: '/dashboard/product',
+  //   icon: icon('ic_cart'),
+  // },
   // {
   //   title: 'blog',
   //   path: '/dashboard/blog',
   //   icon: icon('ic_blog'),
   // },
-  {
-    title: 'Add Product',
-    path: '/dashboard/scanbarcode',
-    icon: icon('ic_add')
-  },
-  {
-    title: 'schedule',
-    path: '/dashboard/schedule',
-    icon: icon('ic_schedule')
-  },
+  // {
+  //   title: 'Add Product',
+  //   path: '/dashboard/scanbarcode',
+  //   icon: icon('ic_add')
+  // },
+  // {
+  //   title: 'schedule',
+  //   path: '/dashboard/schedule',
+  //   icon: icon('ic_schedule')
+  // },
 ];
 
 export default navConfig;

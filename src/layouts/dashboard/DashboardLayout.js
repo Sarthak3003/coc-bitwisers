@@ -63,48 +63,6 @@ export default function DashboardLayout() {
 
       <Main>
         <Outlet />
-        {/* <PopupState
-          variant="popover"
-          popupId="demo-popup-popover"
-          onClick={SpeechRecognition.startListening}
-        >
-          {(popupState) => (
-            <Button onClick={SpeechRecognition.startListening}   >
-              <Fab
-                sx={{
-                  position: 'fixed',
-                  bottom: 16,
-                  right: 16,
-                }}
-                aria-label="ADD"
-                {...bindTrigger(popupState)}
-              >
-                <CardMedia
-                  component='img'
-                  image={luigi}
-                  width={50}
-                  height={50}
-                  onClick={SpeechRecognition.startListening}
-                />
-              </Fab>
-              <Popover
-                {...bindPopover(popupState)}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'center',
-                }}
-                transformOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'center',
-                }}
-              >
-                <Typography sx={{ p: 2 }}>
-                  {transcript}
-                </Typography>
-              </Popover>
-            </Button>
-          )}
-        </PopupState> */}
       </Main>
     </StyledRoot >
   );

@@ -78,7 +78,7 @@ const TinCard = () => {
         await childRefs[newIndex].current.restoreCard()
     }
     return (
-        <Grid Container sx={{ marginTop:'5%' }}>
+        <Grid Container sx={{ marginTop: '5%' }}>
             <Grid item sx={{ display: 'flex', justifyContent: 'center' }}>
                 {characters.map((character) =>
                     <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} >

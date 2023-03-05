@@ -16,6 +16,8 @@ import CSVUploadPage from './pages/CSVUploadPage';
 import Kanban from "./pages/Kanban"
 import LabTabs from './sections/@dashboard/tabs/Tabs';
 import TinCard from './components/tincard/TinCard';
+import TinderDashboard from './pages/TinderDashboard';
+import Plans from './pages/Plans';
 
 
 export default function Router() {
@@ -25,8 +27,10 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
-        { path: 'app', element: <DashboardAppPage /> },
+        // { path: 'app', element: <DashboardAppPage /> },
+        { path: 'app', element: <TinderDashboard /> },
         { path: 'user', element: <UserPage /> },
+        { path: 'pricing', element: <Plans /> },
         { path: 'product', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'scanbarcode', element: <LabTabs /> },
