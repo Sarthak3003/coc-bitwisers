@@ -18,8 +18,7 @@ def all_views(request):
 
     i= random.randint(0, 2)
     tup = []
-
-    for j in range(50):
+    for j in range(15):
         tup.append(data['_id'].where(data['cluster'] == i))
     
     big_data = pd.read_csv('users.csv')
@@ -31,7 +30,7 @@ def all_views(request):
     filter_data = filter_data.sort_values(by="createdAt", ascending=False)
 
     filter_data = filter_data.sample(frac = 1)
-    
+
     scores = []
 
     for i in range(len(filter_data)): 
@@ -81,10 +80,13 @@ def all_views(request):
             score += 0
         else:
             score += 3
-            
+
+        # filter_data.at[i, score] = score
         scores.append(score)
     
     filter_data['score'] = scores
+
+    filter_data = filter_data.to_json(orient='records')
 
     return Response(
         {
@@ -99,7 +101,7 @@ def male_views(request):
 
     i= random.randint(0, 2)
     tup = []
-    for j in range(100):
+    for j in range(15):
         tup.append(data['_id'].where(data['cluster'] == i))
     
     big_data = pd.read_csv('male_data.csv')
@@ -179,7 +181,7 @@ def female_views(request):
 
     i= random.randint(0, 2)
     tup = []
-    for j in range(100):
+    for j in range(15):
         tup.append(data['_id'].where(data['cluster'] == i))
     
     big_data = pd.read_csv('female_data.csv')
