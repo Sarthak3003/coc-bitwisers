@@ -38,7 +38,7 @@ HiChat.prototype = {
         });
         this.socket.on('system', function(nickName, userCount, type) {
             var msg = nickName + (type == 'login' ? ' is online' : ' is offline');
-            that._displayNewMsg('system ', msg, 'red');
+            that._displayNewMsg('system ', msg, '#424242')
             document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
         });
         this.socket.on('newMsg', function(user, msg, color) {
