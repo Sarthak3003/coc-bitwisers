@@ -14,6 +14,7 @@ import Iconify from '../../../components/iconify';
 import UserServices from '../../../services/UserServices';
 import { kpupContext } from '../../../context';
 
+
 // ----------------------------------------------------------------------
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -76,6 +77,12 @@ export default function SignUpForm({ setActiveStep, activeStep, json, setJson })
           </Grid>
           <Grid item md={6} sx={{ width: '100%' }}>
             <TextField name="contact" label="Phone Number" sx={{ width: '100%' }} value={json.contact} id='contact' onChange={handleChange} />
+          </Grid>
+          <Grid item md={6} sx={{ width: '100%' }}>
+            <TextField name="password" label="Password" sx={{ width: '100%' }} value={json.password} id='password' onChange={handleChange} />
+          </Grid>
+          <Grid item md={6} sx={{ width: '100%' }}>
+            <TextField name="dob" label="Date of Birth" sx={{ width: '100%' }} value={json.dob} type='date' id='dob'  onChange={handleChange} />
           </Grid>
           <Grid item md={6}>
             <FormControl fullWidth>

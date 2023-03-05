@@ -100,7 +100,7 @@ function SignUpForm1({ setActiveStep, activeStep, json, setJson }) {
                         <TextField name="college" sx={{ width: '100%' }} fullWidth placeholder='College' value={json.college} id='college' onChange={handleChange} />
                     </Grid>
                     <Grid item md={6} sx={{ width: '100%' }}>
-                        <TextField name="interests" sx={{ width: '100%' }} fullWidth placeholder='Interests' value={json.interests} id='interests' onChange={handleInterests} />
+                        <TextField name="interests" sx={{ width: '100%' }} fullWidth placeholder='Interests' value={json.interests} id='interests' onChange={handleChange} />
                     </Grid>
                     <Grid item md={3} sx={{ width: '100%' }}>
                         <FormControl fullWidth>

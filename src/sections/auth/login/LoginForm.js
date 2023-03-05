@@ -28,18 +28,9 @@ export default function LoginForm() {
     setLoad(true)
     await AuthServices.login(json)
       .then(async (res) => {
-        console.log(res);
-        localStorage.setItem("kpupToken", res.data)
-        setToken(res.data)
-        setLoad(false)
-        await UserServices.getUserDetails(res.data)
-          .then((res) => {
-            setUser(res.data)
-            localStorage.setItem("kpupUser", JSON.stringify(res.data))
-            console.log(res.data)
-            successHandler("Login Successful")
-            navigate('/dashboard');
-          })
+        console.log(res.data.data.details);
+        localStorage.setItem('lovelinkuser', JSON.stringify(res.data.data.details))
+
       })
       .catch((e) => {
         console.log(e)
