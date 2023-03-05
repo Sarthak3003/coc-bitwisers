@@ -84,15 +84,17 @@ export default function Nav({ openNav, onCloseNav }) {
             <h4 style={{ margin: '0', padding: '0', fontFamily: 'Poppins', marginLeft: '3%' }}>VIP Members</h4>
           </Grid>
           {
-            [5, 26, 3].map((k) => {
+            [{ id: '1', name: 'Sarthak Bhan', age:20 },
+                        { id: '2', name: 'Prateek Rnaka', age:21 },
+                        { id: '3', name: 'Bhavya Mehta', age:19 }].map((k) => {
               return <Grid container rowSpacing={1} sx={{ display: 'flex', padding: '2%', alignItems: 'center' }}>
                 <Grid item md={5}>
-                  <CardMedia sx={{ width: '50px', height: '50px', borderRadius: '5px' }} component='img' image={`https://source.unsplash.com/random/?user-face&${k}`} />
+                  <CardMedia sx={{ width: '50px', height: '50px', borderRadius: '5px' }} component='img' image={`https://source.unsplash.com/random/?user-face&${k.id}`} />
 
                 </Grid>
                 <Grid item md={7}>
-                  <h6 style={{ margin: '0', padding: '0' }}>Khushi Mehta</h6>
-                  <p style={{ fontSize: '10px', margin: '0', padding: '0' }}>Age 21 Location: India</p>
+                  <h6 style={{ margin: '0', padding: '0' }}>{k.name}</h6>
+                  <p style={{ fontSize: '10px', margin: '0', padding: '0' }}>Age {k.age} Location: India</p>
                 </Grid>
               </Grid>
             })
