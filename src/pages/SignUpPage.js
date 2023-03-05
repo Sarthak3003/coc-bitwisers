@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // sections
 import HorizontalLinearStepper from '../sections/auth/signup/Stepper';
 import useResponsive from '../hooks/useResponsive';
-import luigi from '../images/luigi.png'
+import search from '../images/search.png'
 
 // ----------------------------------------------------------------------
 
@@ -51,7 +51,8 @@ export default function SignUpPage() {
                         <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
                             Hi, Good to see you
                         </Typography>
-                        <CardMedia component='img' image={luigi} alt="login" />
+                        <CardMedia component='img' image='https://media.giphy.com/media/0q7ngLrQvNtQOervna/giphy.gif' alt="login"  />
+                        {/* <CardMedia component='img' image={search} alt="login" /> */}
                     </StyledSection>
                 )}
 

@@ -43,7 +43,7 @@ export default function DashboardAppPage() {
     <>
       <Container maxWidth="xl">
         <Typography variant="h3" sx={{ mb: 5 }}>
-          Hi, Welcome back to <span style={{ "color": "#E5659B" }}>LuigiMart</span>
+          Hi, Welcome back to <span style={{ "color": "#E5659B" }}>LoveLink</span>
         </Typography>
 
         <Grid container spacing={3}>
