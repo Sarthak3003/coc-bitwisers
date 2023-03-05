@@ -1,5 +1,6 @@
 import json
 import random
+import numpy as np
 import pandas as pd
 from .models import *
 from .serializers import *
@@ -17,7 +18,7 @@ def all_views(request):
 
     i= random.randint(0, 2)
     tup = []
-    for j in range(100):
+    for j in range(50):
         tup.append(data['_id'].where(data['cluster'] == i))
     
     big_data = pd.read_csv('users.csv')
@@ -27,6 +28,63 @@ def all_views(request):
         filter_data = big_data.loc[big_data['_id'] == j]
 
     filter_data = filter_data.sort_values(by="createdAt", ascending=False)
+
+    filter_data = filter_data.sample(frac = 1)
+
+    scores = []
+
+    for i in range(len(filter_data)): 
+        score = 0
+
+        if type(filter_data.iloc[i]["dob"]) == float and pd.isna(filter_data.iloc[i]["dob"]):
+            score += 0
+        else:
+            score += 5
+
+        if type(filter_data.iloc[i]["gender"]) == float and pd.isna(filter_data.iloc[i]["gender"]):
+            score += 0
+        else:
+            score += 5
+
+        if type(filter_data.iloc[i]["height"]) == np.float64 and pd.isna(filter_data.iloc[i]["height"]):
+            score += 0
+        else:
+            score += 2
+
+        if filter_data.iloc[i]["interests"] == '[]':
+            score += 0
+        else:
+            score += 7
+
+        if type(filter_data.iloc[i]["is_habit_drink"]) == float and pd.isna(filter_data.iloc[i]["is_habit_drink"]):
+            score += 0
+        else:
+            score += 5
+
+        if type(filter_data.iloc[i]["is_habit_smoke"]) == float and pd.isna(filter_data.iloc[i]["is_habit_smoke"]):
+            score += 0
+        else:
+            score += 5
+
+        if filter_data.iloc[i]["is_verified"] == True:
+            score += 10
+        else:
+            score += 0
+
+        if type(filter_data.iloc[i]["name"]) == float and pd.isna(filter_data.iloc[i]["name"]):
+            score += 0
+        else:
+            score += 2
+
+        if type(filter_data.iloc[i]["bio"]) == float and pd.isna(filter_data.iloc[i]["bio"]):
+            score += 0
+        else:
+            score += 3
+
+        # filter_data.at[i, score] = score
+        scores.append(score)
+    
+    filter_data['score'] = scores
 
     return Response(
         {
@@ -49,9 +107,65 @@ def male_views(request):
 
     for j in tup:
         filter_data = big_data.loc[big_data['_id'] == j]
-        print(filter_data)
 
     filter_data = filter_data.sort_values(by="createdAt", ascending=False)
+
+    filter_data = filter_data.sample(frac = 1)
+
+    scores = []
+
+    for i in range(len(filter_data)): 
+        score = 0
+
+        if type(filter_data.iloc[i]["dob"]) == float and pd.isna(filter_data.iloc[i]["dob"]):
+            score += 0
+        else:
+            score += 5
+
+        if type(filter_data.iloc[i]["gender"]) == float and pd.isna(filter_data.iloc[i]["gender"]):
+            score += 0
+        else:
+            score += 5
+
+        if type(filter_data.iloc[i]["height"]) == np.float64 and pd.isna(filter_data.iloc[i]["height"]):
+            score += 0
+        else:
+            score += 2
+
+        if filter_data.iloc[i]["interests"] == '[]':
+            score += 0
+        else:
+            score += 7
+
+        if type(filter_data.iloc[i]["is_habit_drink"]) == float and pd.isna(filter_data.iloc[i]["is_habit_drink"]):
+            score += 0
+        else:
+            score += 5
+
+        if type(filter_data.iloc[i]["is_habit_smoke"]) == float and pd.isna(filter_data.iloc[i]["is_habit_smoke"]):
+            score += 0
+        else:
+            score += 5
+
+        if filter_data.iloc[i]["is_verified"] == True:
+            score += 10
+        else:
+            score += 0
+
+        if type(filter_data.iloc[i]["name"]) == float and pd.isna(filter_data.iloc[i]["name"]):
+            score += 0
+        else:
+            score += 2
+
+        if type(filter_data.iloc[i]["bio"]) == float and pd.isna(filter_data.iloc[i]["bio"]):
+            score += 0
+        else:
+            score += 3
+
+        # filter_data.at[i, score] = score
+        scores.append(score)
+    
+    filter_data['score'] = scores
 
     return Response(
         {
@@ -75,6 +189,63 @@ def female_views(request):
         filter_data = big_data.loc[big_data['_id'] == j]
 
     filter_data = filter_data.sort_values(by="createdAt", ascending=False)
+
+    filter_data = filter_data.sample(frac = 1)
+
+    scores = []
+
+    for i in range(len(filter_data)): 
+        score = 0
+
+        if type(filter_data.iloc[i]["dob"]) == float and pd.isna(filter_data.iloc[i]["dob"]):
+            score += 0
+        else:
+            score += 5
+
+        if type(filter_data.iloc[i]["gender"]) == float and pd.isna(filter_data.iloc[i]["gender"]):
+            score += 0
+        else:
+            score += 5
+
+        if type(filter_data.iloc[i]["height"]) == np.float64 and pd.isna(filter_data.iloc[i]["height"]):
+            score += 0
+        else:
+            score += 2
+
+        if filter_data.iloc[i]["interests"] == '[]':
+            score += 0
+        else:
+            score += 7
+
+        if type(filter_data.iloc[i]["is_habit_drink"]) == float and pd.isna(filter_data.iloc[i]["is_habit_drink"]):
+            score += 0
+        else:
+            score += 5
+
+        if type(filter_data.iloc[i]["is_habit_smoke"]) == float and pd.isna(filter_data.iloc[i]["is_habit_smoke"]):
+            score += 0
+        else:
+            score += 5
+
+        if filter_data.iloc[i]["is_verified"] == True:
+            score += 10
+        else:
+            score += 0
+
+        if type(filter_data.iloc[i]["name"]) == float and pd.isna(filter_data.iloc[i]["name"]):
+            score += 0
+        else:
+            score += 2
+
+        if type(filter_data.iloc[i]["bio"]) == float and pd.isna(filter_data.iloc[i]["bio"]):
+            score += 0
+        else:
+            score += 3
+
+        # filter_data.at[i, score] = score
+        scores.append(score)
+    
+    filter_data['score'] = scores
 
     return Response(
         {

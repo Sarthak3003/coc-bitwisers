@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+   <style>
+      .center {
+         position: absolute;
+         text-align: center;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+      }
+      
+   </style>
+  
+</head>
+<body>
+   <div class="center">
+      <h3>
+         Thanks, You are aweseome!<i class="fas fa-check-circle"></i>
+      </h3>
+      <h5>
+         <a href="http://localhost:3000/dashboard/app">
+         Home Page
+         </a>
+      </h5>
+   </div>
+   <b><a class="center" style="margin-top: 60px;" href="whatsapp/">Get Update on WhatsApp!</a></b>
+</body>
+
+{% endblock content %}

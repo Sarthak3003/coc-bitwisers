@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     'app',
     'accounts',
+    'verification',
     'corsheaders',
     'rest_framework',
 ]
@@ -66,7 +67,7 @@ ROOT_URLCONF = 'clashofcode.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/registration/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
