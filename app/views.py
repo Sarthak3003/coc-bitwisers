@@ -31,17 +31,6 @@ def all_views(request):
     filter_data = filter_data.sort_values(by="createdAt", ascending=False)
 
     filter_data = filter_data.sample(frac = 1)
-
-    for i in range(len(filter_data)):
-        temp = filter_data.iloc[i]['college']
-        if temp != "":
-            temp = temp.replace('[', '')
-            temp = temp.replace(']', '')
-            temp = temp.replace('"', '')
-            temp = temp.replace('"', '')
-        filter_data.at[i, 'college'] = temp
-    
-    filter_data = filter_data.fillna('')
     
     scores = []
 
@@ -96,12 +85,11 @@ def all_views(request):
         scores.append(score)
     
     filter_data['score'] = scores
-    filter_json = filter_data.fillna('')
 
     return Response(
         {
             "val": True,
-            "data" : {"val" : True, "details":filter_json},
+            "data" : {"val" : True, "details":filter_data},
         }, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
