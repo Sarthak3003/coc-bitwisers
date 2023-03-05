@@ -18,6 +18,7 @@ def all_views(request):
 
     i= random.randint(0, 2)
     tup = []
+
     for j in range(50):
         tup.append(data['_id'].where(data['cluster'] == i))
     
@@ -31,6 +32,17 @@ def all_views(request):
 
     filter_data = filter_data.sample(frac = 1)
 
+    for i in range(len(filter_data)):
+        temp = filter_data.iloc[i]['college']
+        if temp != "":
+            temp = temp.replace('[', '')
+            temp = temp.replace(']', '')
+            temp = temp.replace('"', '')
+            temp = temp.replace('"', '')
+        filter_data.at[i, 'college'] = temp
+    
+    filter_data = filter_data.fillna('')
+    
     scores = []
 
     for i in range(len(filter_data)): 
@@ -80,16 +92,16 @@ def all_views(request):
             score += 0
         else:
             score += 3
-
-        # filter_data.at[i, score] = score
+            
         scores.append(score)
     
     filter_data['score'] = scores
+    filter_json = filter_data.fillna('')
 
     return Response(
         {
             "val": True,
-            "data" : {"val" : True, "details":filter_data},
+            "data" : {"val" : True, "details":filter_json},
         }, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
