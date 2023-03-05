@@ -10,11 +10,11 @@ function RecentActivities() {
                     <h3 style={{ fontFamily: 'Poppins', margin: '0', padding: '0' }} >Recent Activities</h3>
 
                     {
-                        [{ id: '10', name: 'Kush Maniar', activity: 'Just viewed your', color: '#FF008A' },
-                        { id: '100', name: 'Prateek Rnaka', activity: 'Asked a question', color: 'blue' },
-                        { id: '9', name: 'Vidhita Pai', activity: 'You Liked then', color: 'yellow' },
-                        { id: '10', name: 'Lokita Varma', activity: 'Just viewed your', color: '#FF008A' },
-                        { id: '10', name: 'Khushi Mehta', activity: 'Just viewed your', color: '#FF008A' }].map((k) => {
+                        [{ id: '1', name: 'Kush Maniar', activity: 'Just viewed your profile', color: '#FF008A' },
+                        { id: '2', name: 'Prateek Rnaka', activity: 'Asked a question', color: 'blue' },
+                        { id: '3', name: 'Vidhita Pai', activity: 'You Liked then', color: 'yellow' },
+                        { id: '4', name: 'Lokita Varma', activity: 'Just viewed your profile', color: '#FF008A' },
+                        { id: '5', name: 'Khushi Mehta', activity: 'Just viewed your profile', color: '#FF008A' }].map((k) => {
                             return <Card>
                                 <CardContent sx={{ padding: '10px', display: 'flex' }} >
                                     <CardMedia sx={{ width: '50px', borderRadius: '5px', height: '50px' }} component='img' image={`https://source.unsplash.com/random/?user-face&${k.id}`} />
