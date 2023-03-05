@@ -1,9 +1,17 @@
 import cv2
-from django.shortcuts import render
+import requests
+from PIL import Image
+from django.shortcuts import render, redirect
 from .simple_facerec import SimpleFacerec
+from rest_framework.decorators import api_view
 # Create your views here.
 
+@api_view(['GET'])
 def face_verify(request):
+
+    # img_url = request.body
+    # img = Image.open(requests.get(img_url, stream = True).raw)
+    # img.save('images/greenland_02a.png')
     
     # Encode faces from a folder
     sfr = SimpleFacerec()
@@ -25,10 +33,12 @@ def face_verify(request):
 
         cv2.imshow("Frame", frame)
 
-        key = cv2.waitKey(1)
-        if key == 27:
+        # key = cv2.waitKey(1)
+        if frame != "Unknown":
             break
 
     cap.release()
     cv2.destroyAllWindows()
+
+    return redirect('http://localhost:3000/dashboard/app')
 
