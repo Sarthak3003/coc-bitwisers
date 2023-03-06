@@ -8,22 +8,14 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET'])
 def face_verify(request):
-
-    # img_url = request.body
-    # img = Image.open(requests.get(img_url, stream = True).raw)
-    # img.save('images/greenland_02a.png')
-    
-    # Encode faces from a folder
     sfr = SimpleFacerec()
     sfr.load_encoding_images("images/")
-
-    # Load Camera
     cap = cv2.VideoCapture(0)
 
     while True:
-        ret, frame = cap.read()
+        
+        _ , frame = cap.read()
 
-        # Detect Faces
         face_locations, face_names = sfr.detect_known_faces(frame)
         for face_loc, name in zip(face_locations, face_names):
             if name != "Unknown":
